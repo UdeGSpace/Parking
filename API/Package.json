@@ -1,0 +1,21 @@
+{
+    "name": "rest-api-express-mongo",
+    "version": "1.0.0",
+    "description": "Test",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "author": "Sergio Sanchez",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "mongodb": "^6.2.0",
+        "mongoose": "^8.0.0",
+        "multer": "^1.4.4",
+        "multer-gridfs-storage": "^5.0.2",
+        "nodemon": "^3.0.1"
+    }
+}
