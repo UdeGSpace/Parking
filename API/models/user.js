@@ -20,9 +20,10 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     arrivingTimeStamp: {
-        required: true,
-        type: Date
-    },
+        type: Date, 
+        default: Date.now,
+        get: (date)=> date.toLocaleDateString("es-MX",{ timeZone: 'America/Mexico_City', dateStyle: "short", timeStyle: 'full' })
+       },
     doorNum: {
         required: true,
         type: Number

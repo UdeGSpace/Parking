@@ -45,6 +45,29 @@ router.get("/entraceRegister", async (req, res) => {
     }
 });
 
+router.get("/plateRecord", async (req, res) => {
+    const plate = req.query.plate.toLocaleLowerCase();
+    const timestamp = new Date();
+    timestamp.setHours(0);
+    timestamp.setMinutes(0);
+    timestamp.setSeconds(0);
+    console.log(timestamp);
+    try {
+        let result = await userTable.find({
+            plate: plate,
+            arrivingTimeStamp: { $gte: timestamp }
+        });
+
+        if (!result || result.length === 0) {
+            res.status(200).send("Empty");
+        } else {
+            res.status(200).send(result);
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 router.put("/entraceRegister/update", async (req, res) => {
     const plate = req.query.plate; // Extracting plate from the query parameters
 
