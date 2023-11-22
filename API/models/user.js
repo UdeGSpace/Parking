@@ -1,3 +1,4 @@
+const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 require("dotenv").config();
 
@@ -6,29 +7,34 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    age: {
-        required: true,
-        type: Number
-    },
-    lastName: {
+    brand: {
         required: true,
         type: String
     },
-    mail: {
-        required: false,
+    color: {
+        required: true,
         type: String
     },
-    phone: {
-        required: false,
+    plate: {
+        required: true,
+        type: String
+    },
+    arrivingTimeStamp: {
+        required: true,
+        type: Date
+    },
+    doorNum: {
+        required: true,
         type: Number
     },
-    photoId: {
-        required: false,
+    module: {
+        required: true,
         type: String
-    }
-},{
-    collection:'User',
+    },
+},
+{
+    collection:'EntraceRegister',
     versionKey: false
 });
 
-module.exports = mongoose.model('User', dataSchema)
+module.exports = mongoose.model('EntraceRegister', dataSchema)
