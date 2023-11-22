@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Entradas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Registro de Entradas</h1>
+
+<label for="doorSelect">Numero de Puerta:</label>
+<select id="doorSelect">
+    <option value="1">Puerta 1</option>
+    <option value="2">Puerta 2</option>
+    <option value="3">Puerta 3</option>
+    <!-- Agrega más opciones según sea necesario -->
+</select>
+
+<button onclick="fetchEntranceRecords()">Actualizar puerta</button>
+
+<div id="results">
+    <h2>Registros Recibidos:</h2>
+    <table id="recordsTable">
+        <tr>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Color</th>
+            <th>Placa</th>
+            <th>Hora de llegada</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+async function fetchDoors() {
+    try {
+        const response = await fetch("file:///Users/sergiosanchezroldan/Desktop/CUCEI/8vo%20Semestre/Proyecto/Web/doors.json"); // Cambia a la ruta correcta de tu archivo JSON
+        const doorsData = await response.json();
+
+        // Llenar el elemento doorSelect con la información del archivo JSON
+        const doorSelect = document.getElementById("doorSelect");
+
+        for (const [doorNumber, description] of Object.entries(doorsData)) {
+            const option = document.createElement("option");
+            option.value = doorNumber;
+            option.textContent = `${doorNumber} - ${description}`;
+            doorSelect.appendChild(option);
+        }
+    } catch (error) {
+        console.error("Error al obtener la información de las puertas:", error);
+    }
+}
+
+async function fetchEntranceRecords() {
+    const doorNum = document.getElementById("doorSelect").value;
+    let arrivingTime = new Date();
+    arrivingTime.setMinutes(0);
+    arrivingTime.setSeconds(0);
+
+    try {
+        const response = await fetch(`http://127.0.0.1:3000/parking/entraceRegister?doorNum=${doorNum}&arrivingTime=${arrivingTime}`);
+        const responseBody = await response.text();
+
+        // Llenar la tabla con los resultados
+        const recordsTable = document.getElementById("recordsTable");
+
+        if (responseBody.trim().toLowerCase() === "empty") {
+            // Limpiar la tabla y mostrar un mensaje si la respuesta es "empty"
+            recordsTable.innerHTML = "<tr><th>Nombre</th><th>Marca</th><th>Color</th><th>Placa</th><th>Hora de llegada</th></tr><tr><td colspan='5'>No hay registros disponibles.</td></tr>";
+            return;
+        }
+
+        const data = JSON.parse(responseBody);
+
+        // Limpiar la tabla antes de llenarla con nuevos datos
+        recordsTable.innerHTML = "<tr><th>Nombre</th><th>Marca</th><th>Color</th><th>Placa</th><th>Hora de llegada</th></tr>";
+
+        data.forEach(record => {
+            const newRow = recordsTable.insertRow(-1);
+            newRow.innerHTML = `
+                <td>${record.name}</td>
+                <td>${record.brand}</td>
+                <td>${record.color}</td>
+                <td>${record.plate}</td>
+                <td>${record.arrivingTimeStamp}</td>
+            `;
+        });
+    } catch (error) {
+        console.error("Error al obtener registros:", error);
+    }
+}
+
+// Llamar a la función para llenar el elemento doorSelect al cargar la página
+fetchDoors();
+</script>
+
+</body>
+</html>
