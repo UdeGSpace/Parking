@@ -3,6 +3,8 @@ const router = express.Router();
 const model = require("../models/user");
 const { default: mongoose } = require('mongoose');
 const { Int32 } = require("mongodb");
+var mongo = require('mongodb');
+var ObjectId = require('mongodb').ObjectID;
 require("dotenv").config();
 
 const userTable = mongoose.model("EntraceRegister", model.User);
@@ -69,11 +71,12 @@ router.get("/plateRecord", async (req, res) => {
 });
 
 router.put("/entraceRegister/update", async (req, res) => {
-    const plate = req.query.plate; // Extracting plate from the query parameters
+    const id = req.query.id; // Extracting id from the query parameters
+    var o_id = new mongo.ObjectId(id);
 
     try {
         const result = await userTable.findOneAndUpdate(
-            { plate: plate },
+            { _id: o_id },
             {
                 name: req.body.name.toLocaleLowerCase(),
                 brand: req.body.brand.toLocaleLowerCase(),
@@ -96,10 +99,11 @@ router.put("/entraceRegister/update", async (req, res) => {
 });
 
 router.delete("/entraceRegister/delete", async (req, res) => {
-    const plate = req.query.plate;
+    const id = req.query.id; // Extracting id from the query parameters
+    var o_id = new mongo.ObjectId(id);
 
     try {
-        const result = await userTable.findOneAndDelete({ plate: plate });
+        const result = await userTable.findOneAndDelete({ _id: o_id });
 
         if (!result) {
             res.status(404).send("Not found");
