@@ -3,19 +3,21 @@ const router = express.Router();
 const model = require("../models/user");
 const { default: mongoose } = require('mongoose');
 const { Int32 } = require("mongodb");
+var mongo = require('mongodb');
+var ObjectId = require('mongodb').ObjectID;
 require("dotenv").config();
 
 const userTable = mongoose.model("EntraceRegister", model.User);
 
 router.post('/register', async (req, res) => {
     const data = new userTable({
-        name: req.body.name,
-        brand: req.body.brand,
-        color: req.body.color,
-        plate: req.body.plate,
+        name: req.body.name.toLocaleLowerCase(),
+        brand: req.body.brand.toLocaleLowerCase(),
+        color: req.body.color.toLocaleLowerCase(),
+        plate: req.body.plate.toLocaleLowerCase(),
         arrivingTimeStamp: req.body.arrivingTimeStamp,
         doorNum: req.body.doorNum,
-        module: req.body.module
+        module: req.body.module.toLocaleLowerCase()
     });
     try {
         const result = await data.save();
@@ -59,7 +61,7 @@ router.get("/plateRecord", async (req, res) => {
         });
 
         if (!result || result.length === 0) {
-            res.status(200).send("Empty");
+            res.status(200).send(result);
         } else {
             res.status(200).send(result);
         }
@@ -69,18 +71,19 @@ router.get("/plateRecord", async (req, res) => {
 });
 
 router.put("/entraceRegister/update", async (req, res) => {
-    const plate = req.query.plate; // Extracting plate from the query parameters
+    const id = req.query.id; // Extracting id from the query parameters
+    var o_id = new mongo.ObjectId(id);
 
     try {
         const result = await userTable.findOneAndUpdate(
-            { plate: plate },
+            { _id: o_id },
             {
-                name: req.body.name,
-                brand: req.body.brand,
-                color: req.body.color,
+                name: req.body.name.toLocaleLowerCase(),
+                brand: req.body.brand.toLocaleLowerCase(),
+                color: req.body.color.toLocaleLowerCase(),
                 arrivingTimeStamp: req.body.arrivingTimeStamp,
                 doorNum: req.body.doorNum,
-                module: req.body.module
+                module: req.body.module.toLocaleLowerCase()
             },
             { new: true } // Return the modified document
         );
@@ -96,10 +99,11 @@ router.put("/entraceRegister/update", async (req, res) => {
 });
 
 router.delete("/entraceRegister/delete", async (req, res) => {
-    const plate = req.query.plate;
+    const id = req.query.id; // Extracting id from the query parameters
+    var o_id = new mongo.ObjectId(id);
 
     try {
-        const result = await userTable.findOneAndDelete({ plate: plate });
+        const result = await userTable.findOneAndDelete({ _id: o_id });
 
         if (!result) {
             res.status(404).send("Not found");

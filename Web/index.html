@@ -57,7 +57,6 @@
 <button onclick="fetchEntranceRecords()">Actualizar puerta</button>
 
 <div id="results">
-    <h2>Registros Recibidos:</h2>
     <table id="recordsTable">
         <tr>
             <th>Nombre</th>
@@ -94,6 +93,7 @@ async function fetchEntranceRecords() {
     let arrivingTime = new Date();
     arrivingTime.setMinutes(0);
     arrivingTime.setSeconds(0);
+    console.log(arrivingTime);
 
     try {
         const response = await fetch(`http://127.0.0.1:3000/parking/entraceRegister?doorNum=${doorNum}&arrivingTime=${arrivingTime}`);

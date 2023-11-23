@@ -1,5 +1,5 @@
 import SwiftUI
-
+    
 struct CarDetails: Decodable, Identifiable {
     let id = UUID() // Agrega una propiedad id
     let _id: String
@@ -13,6 +13,9 @@ struct CarDetails: Decodable, Identifiable {
 }
 
 struct InComing: View {
+    @State private var isPresentingConfirm: Bool = false
+    @State private var selectedItemId: String?
+    @State private var confirmationShown = false
     @State private var licensePlate = ""
     @State private var carDetails: [CarDetails] = []
     @State private var leftNumber = 0
@@ -25,11 +28,7 @@ struct InComing: View {
             ZStack {
                 Color(.systemBackground)
                     .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation {
-                            isTextFieldSelected = false
-                        }
-                    }
+
                 VStack {
                     RoundedRectangle(cornerRadius: 25)
                         .fill(Color(UIColor.systemGray4))
@@ -39,10 +38,10 @@ struct InComing: View {
                             HStack(alignment: .center, content: {
                                 Image(systemName: "magnifyingglass").padding()
                                 TextField("Ingrese la placa", text: $licensePlate)
+                                    .tag("search")
                                     .padding()
                                     .textFieldStyle(DefaultTextFieldStyle())
                                     .foregroundColor(.black).bold()
-                                    .focused($isTextFieldFocused)
                                     .onTapGesture {
                                         withAnimation {
                                             isTextFieldSelected = true
@@ -76,9 +75,20 @@ struct InComing: View {
                                                 .foregroundColor(.black).bold()
                                                 Menu("..."){
                                                     Text("Actualizar")
-                                                    Text("Borrar")
-
+                                                    Button(role: .destructive)
+                                                    { selectedItemId = detail._id
+                                                      isPresentingConfirm = true } label: {
+                                                        Label("Eliminar", systemImage: "trash")
+                                                    }
                                                 }
+                                                .confirmationDialog("Confirmación",
+                                                  isPresented: $isPresentingConfirm)
+                                                {
+                                                  Button("Eliminar registro", role: .destructive) {
+                                                    delete()
+                                                   }
+                                                 }
+
                                             })
 
                                         }
@@ -93,7 +103,6 @@ struct InComing: View {
                             Text("No se encontraron detalles para la placa ingresada.")
                         }
                     }
-                    .opacity(isTextFieldSelected && !isTextFieldFocused ? 1.0 : 0.0)
                 }
             }
         }
@@ -127,8 +136,38 @@ struct InComing: View {
         return String();
     }
     
-    func delete(){
-        return
+    func delete() {
+        // Utiliza el _id del elemento seleccionado en la función de eliminación
+        guard let id = selectedItemId else {
+            return
+        }
+
+        let deleteURLString = "http://127.0.0.1:3000/parking/entraceRegister/delete?id=\(id)"
+        guard let deleteURL = URL(string: deleteURLString) else {
+            print("URL no válida")
+            return
+        }
+
+        var request = URLRequest(url: deleteURL)
+        request.httpMethod = "DELETE"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error al realizar la solicitud de eliminación: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 204 {
+                    // La eliminación fue exitosa
+                    print("Elemento eliminado con éxito")
+                    fetchData()
+                    // Aquí puedes actualizar la lista de detalles después de la eliminación si es necesario
+                } else {
+                    print("Error al eliminar el elemento. Código de estado: \(httpResponse.statusCode)")
+                }
+            }
+        }.resume()
     }
 }
 
@@ -137,4 +176,3 @@ struct InComing_Previews: PreviewProvider {
         InComing()
     }
 }
-
