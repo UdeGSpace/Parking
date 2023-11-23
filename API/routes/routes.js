@@ -9,13 +9,13 @@ const userTable = mongoose.model("EntraceRegister", model.User);
 
 router.post('/register', async (req, res) => {
     const data = new userTable({
-        name: req.body.name,
-        brand: req.body.brand,
-        color: req.body.color,
-        plate: req.body.plate,
+        name: req.body.name.toLocaleLowerCase(),
+        brand: req.body.brand.toLocaleLowerCase(),
+        color: req.body.color.toLocaleLowerCase(),
+        plate: req.body.plate.toLocaleLowerCase(),
         arrivingTimeStamp: req.body.arrivingTimeStamp,
         doorNum: req.body.doorNum,
-        module: req.body.module
+        module: req.body.module.toLocaleLowerCase()
     });
     try {
         const result = await data.save();
@@ -59,7 +59,7 @@ router.get("/plateRecord", async (req, res) => {
         });
 
         if (!result || result.length === 0) {
-            res.status(200).send("Empty");
+            res.status(200).send(result);
         } else {
             res.status(200).send(result);
         }
@@ -75,12 +75,12 @@ router.put("/entraceRegister/update", async (req, res) => {
         const result = await userTable.findOneAndUpdate(
             { plate: plate },
             {
-                name: req.body.name,
-                brand: req.body.brand,
-                color: req.body.color,
+                name: req.body.name.toLocaleLowerCase(),
+                brand: req.body.brand.toLocaleLowerCase(),
+                color: req.body.color.toLocaleLowerCase(),
                 arrivingTimeStamp: req.body.arrivingTimeStamp,
                 doorNum: req.body.doorNum,
-                module: req.body.module
+                module: req.body.module.toLocaleLowerCase()
             },
             { new: true } // Return the modified document
         );
