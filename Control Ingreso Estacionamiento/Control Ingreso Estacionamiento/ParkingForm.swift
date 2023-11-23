@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Foundation
 
 struct CarRegistration: Encodable {
     let name: String
@@ -26,9 +25,11 @@ struct ParkingForm: View {
     @State private var arrivingTime = Date()
     @State private var doorNum = 1
     @State private var module = ""
+    @State private var showAlert = false
+    @State private var showEmptyFieldsAlert = false
 
     var body: some View {
-        NavigationView{
+        NavigationView {
             Form {
                 Section(header: Text("Registro de Estacionamiento")) {
                     TextField("Nombre: ", text: $name)
@@ -49,18 +50,43 @@ struct ParkingForm: View {
                         Text("P3: Revolución").tag(3)
                     }
                     Button(action: {
-                        print("Fecha seleccionada: \(arrivingTime)")
-                        registerCar()
+                        if fieldsAreFilled() {
+                            registerCar()
+                            showAlert = true
+                        } else {
+                            showEmptyFieldsAlert = true
+                        }
                     }) {
                         Text("Registrar")
                     }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Registro completado"),
+                            message: Text("El registro se ha completado con éxito."),
+                            dismissButton: .default(Text("OK")) {
+                                // Restablecer los campos después de que el usuario presiona OK
+                                name = ""
+                                brand = ""
+                                color = ""
+                                plate = ""
+                                arrivingTime = Date()
+                                doorNum = 1
+                                module = ""
+                            }
+                        )
+                    }
+
+
                 }
             }
         }
     }
 
+    private func fieldsAreFilled() -> Bool {
+        return !name.isEmpty && !plate.isEmpty && !brand.isEmpty && !color.isEmpty
+    }
+
     private func registerCar() {
-        // Crear una instancia del objeto CarRegistration con los datos del formulario
         let carData = CarRegistration(
             name: name,
             brand: brand,
@@ -110,8 +136,10 @@ struct ParkingForm: View {
     }
 }
 
+
 struct ParkingForm_Previews: PreviewProvider {
     static var previews: some View {
         ParkingForm()
     }
 }
+

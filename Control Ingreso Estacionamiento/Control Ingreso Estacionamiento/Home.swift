@@ -18,16 +18,19 @@ struct Home: View {
                         Image(systemName: "bookmark.circle.fill")
                         Text("Registrar").tag(1)
                     }
-                
-                Text("Profile Tab")
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .tabItem {
-                        Image(systemName: "person.crop.circle")
-                        Text("Profile").tag(3)
-                    }
             }
-            .accentColor(.red)
-            .navigationTitle("CUCEI")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Text("CUCEI")
+                            .foregroundColor(.blue)
+                            .font(.largeTitle)
+                            .bold()
+                    }.frame(maxWidth: .infinity)
+                }
+            }
+            .accentColor(.blue)
+            .foregroundColor(.blue)
             .toolbarBackground(.yellow, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
         }
