@@ -15,24 +15,27 @@ struct Home: View {
                 
                 ParkingForm() // Esta es tu vista de ParkingForm
                     .tabItem {
-                        Image(systemName: "bookmark.circle.fill")
+                        Image(systemName: "car")
                         Text("Registrar").tag(1)
                     }
             }
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
+                ToolbarItem(placement: .principal) {
                     HStack {
                         Text("CUCEI")
                             .foregroundColor(.blue)
                             .font(.largeTitle)
                             .bold()
+                        Image(systemName: "car.side")
+                            .font(.system(size: 30))
+                            .foregroundColor(.blue)
+                        
                     }.frame(maxWidth: .infinity)
                 }
             }
             .accentColor(.blue)
             .foregroundColor(.blue)
-            .toolbarBackground(.yellow, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+
         }
     }
 }

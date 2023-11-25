@@ -4,7 +4,7 @@ struct CarDetails: Decodable, Identifiable {
     let id = UUID() // Agrega una propiedad id
     let _id: String
     let name: String
-    let doorNum: Int32
+    let doorNum: Int
     let color: String
     let brand: String
     let plate: String
@@ -13,6 +13,9 @@ struct CarDetails: Decodable, Identifiable {
 }
 
 struct InComing: View {
+    @State private var isUpdateFormPresented: Bool = false
+    @State private var navigateTo = ""
+    @State private var isActive = false
     @State private var isPresentingConfirm: Bool = false
     @State private var selectedItemId: String?
     @State private var confirmationShown = false
@@ -24,7 +27,7 @@ struct InComing: View {
     @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color(.systemBackground)
                     .ignoresSafeArea()
@@ -51,6 +54,7 @@ struct InComing: View {
                                         fetchData()
                                     }
                             }).disableAutocorrection(true)
+
                         }
                         .padding()
                     // Cuadros de detalles del carro
@@ -60,21 +64,24 @@ struct InComing: View {
                                 VStack {
                                     RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
                                         .fill(Color(UIColor.systemBackground))
-                                        .frame(height: UIScreen.main.bounds.height * 1/5)
+                                        .frame(height: UIScreen.main.bounds.height * 1/4)
                                         .overlay{
                                             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
                                                 VStack(alignment: .leading, content: {
-                                                    Text("Nombre: \(detail.name)")
-                                                    Text("Placa: \(detail.plate)")
-                                                    Text("Color: \(detail.color)")
-                                                    Text("Marca: \(detail.brand)")
-                                                    Text("Puerta: \(detail.doorNum)")
-                                                    Text("Fecha: \(detail.arrivingTimeStamp)")
+                                                    prettyResponse(key:"Nombre",value:"\(detail.name)")
+                                                    prettyResponse(key:"Placa",value:"\(detail.plate)")
+                                                    prettyResponse(key:"Color",value:"\(detail.color)")
+                                                    prettyResponse(key:"Marca",value:"\(detail.brand)")
+                                                    prettyResponse(key:"Puerta",value:"\(detail.doorNum)")
+                                                    prettyResponse(key:"Fecha",value:"\(detail.arrivingTimeStamp)")
                                                 })
                                                 .textFieldStyle(DefaultTextFieldStyle())
-                                                .foregroundColor(.black).bold()
                                                 Menu("..."){
-                                                    Text("Actualizar")
+                                                    NavigationLink(destination: {
+                                                        UpdateForm(carDetails: detail)
+                                                    },label: {
+                                                        Label("Actualizar", systemImage: "folder")
+                                                        })
                                                     Button(role: .destructive)
                                                     { selectedItemId = detail._id
                                                       isPresentingConfirm = true } label: {
@@ -88,7 +95,6 @@ struct InComing: View {
                                                     delete()
                                                    }
                                                  }
-
                                             })
 
                                         }
@@ -99,8 +105,15 @@ struct InComing: View {
                             .listRowSpacing(10)
                             .background(Color(UIColor.systemBackground))
                         } else {
-                            // Mostrar un mensaje si no hay detalles del carro disponibles
-                            Text("No se encontraron detalles para la placa ingresada.")
+                            VStack(alignment: .center, spacing: 10) {
+                                Text("Consulta de registros")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                
+                                Text("Ingresa la placa en el buscador y podras actualizar o eliminar los registros relacionados.")
+                                    .font(.body)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
@@ -130,12 +143,23 @@ struct InComing: View {
             }
         }.resume()
     }
-    
-    func timeFormatter(_ arrivingTimeStamp: String) -> String{
         
-        return String();
+    func prettyResponse(key: String, value: String)-> some View{
+        return VStack(){
+            HStack{
+                Text("\(key)")
+                    .bold()
+                    Spacer()
+                Text("\(value)")
+                    .font(.callout)
+                    .foregroundColor(.secondary)
+            }
+            Divider()
+        }
     }
     
+
+
     func delete() {
         // Utiliza el _id del elemento seleccionado en la función de eliminación
         guard let id = selectedItemId else {
@@ -162,6 +186,7 @@ struct InComing: View {
                     // La eliminación fue exitosa
                     print("Elemento eliminado con éxito")
                     fetchData()
+
                     // Aquí puedes actualizar la lista de detalles después de la eliminación si es necesario
                 } else {
                     print("Error al eliminar el elemento. Código de estado: \(httpResponse.statusCode)")
