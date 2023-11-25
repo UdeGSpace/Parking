@@ -5,7 +5,6 @@ struct Home: View {
 
     var body: some View {
         NavigationView {
-            
             TabView{
                 InComing()
                     .tabItem {
@@ -38,11 +37,13 @@ struct Home: View {
 
         }
     }
+                
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+
     }
 }
 

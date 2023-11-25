@@ -1,6 +1,16 @@
 {
-    "P1": "Olimpica",
-    "P2": "Principal",
-    "P3": "Estacionamiento"
-  }
-  
+  "door":[
+      {
+          "name": "P1",
+          "description": "Olimpica"
+      },
+      {
+          "name": "P2",
+          "description": "Boulevard"
+      },
+      {
+          "name": "P3",
+          "description": "Revolución"
+      },
+  ]
+}

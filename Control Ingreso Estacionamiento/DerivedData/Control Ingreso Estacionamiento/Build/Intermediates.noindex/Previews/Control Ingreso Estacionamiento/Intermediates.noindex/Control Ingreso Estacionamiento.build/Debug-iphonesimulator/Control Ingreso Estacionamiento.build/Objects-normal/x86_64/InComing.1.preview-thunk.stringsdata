@@ -1,0 +1,44 @@
+{
+  "source": "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/DerivedData/Control Ingreso Estacionamiento/Build/Intermediates.noindex/Previews/Control Ingreso Estacionamiento/Intermediates.noindex/Control Ingreso Estacionamiento.build/Debug-iphonesimulator/Control Ingreso Estacionamiento.build/Objects-normal/x86_64/InComing.1.preview-thunk.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@"
+      },
+      {
+        "comment": "",
+        "key": "Ingrese la placa"
+      },
+      {
+        "comment": "",
+        "key": "..."
+      },
+      {
+        "comment": "",
+        "key": "Confirmación"
+      },
+      {
+        "comment": "",
+        "key": "Actualizar"
+      },
+      {
+        "comment": "",
+        "key": "Eliminar"
+      },
+      {
+        "comment": "",
+        "key": "Eliminar registro"
+      },
+      {
+        "comment": "",
+        "key": "Consulta de registros"
+      },
+      {
+        "comment": "",
+        "key": "Ingresa la placa en el buscador y podras actualizar o eliminar los registros relacionados."
+      }
+    ]
+  },
+  "version": 1
+}

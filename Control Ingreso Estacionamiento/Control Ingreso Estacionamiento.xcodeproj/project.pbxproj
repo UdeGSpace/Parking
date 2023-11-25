@@ -17,6 +17,13 @@
 		C19058082AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19058072AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITests.swift */; };
 		C190580A2AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19058092AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITestsLaunchTests.swift */; };
 		C19250E72B11389A00464090 /* UpdateForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19250E62B11389A00464090 /* UpdateForm.swift */; };
+		C19250E92B11841E00464090 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19250E82B11841E00464090 /* MultiSelector.swift */; };
+		C19250EB2B1185B000464090 /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19250EA2B1185B000464090 /* MultiSelectionView.swift */; };
+		C19250EF2B118A2700464090 /* CarRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19250EE2B118A2700464090 /* CarRegistration.swift */; };
+		C19250F42B118DDC00464090 /* jsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19250F32B118DDC00464090 /* jsonDecoder.swift */; };
+		C1A3AE1A2B11A81100B9564F /* door.json in Resources */ = {isa = PBXBuildFile; fileRef = C19250F72B11A2DD00464090 /* door.json */; };
+		C1A3AE202B11AED400B9564F /* door.json in Resources */ = {isa = PBXBuildFile; fileRef = C19250F72B11A2DD00464090 /* door.json */; };
+		C1A3AE212B11AED500B9564F /* door.json in Resources */ = {isa = PBXBuildFile; fileRef = C19250F72B11A2DD00464090 /* door.json */; };
 		C1C67ADF2B01B188001B6ACA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C67ADE2B01B188001B6ACA /* Home.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +58,11 @@
 		C19058072AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control_Ingreso_EstacionamientoUITests.swift; sourceTree = "<group>"; };
 		C19058092AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control_Ingreso_EstacionamientoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C19250E62B11389A00464090 /* UpdateForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateForm.swift; sourceTree = "<group>"; };
+		C19250E82B11841E00464090 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
+		C19250EA2B1185B000464090 /* MultiSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
+		C19250EE2B118A2700464090 /* CarRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarRegistration.swift; sourceTree = "<group>"; };
+		C19250F32B118DDC00464090 /* jsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonDecoder.swift; sourceTree = "<group>"; };
+		C19250F72B11A2DD00464090 /* door.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = door.json; sourceTree = "<group>"; usesTabs = 0; };
 		C1C67ADE2B01B188001B6ACA /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +122,9 @@
 				C19250E62B11389A00464090 /* UpdateForm.swift */,
 				C10740CD2B100501008281C1 /* FormView.swift */,
 				C165C30B2B0E908500561F80 /* ParkingForm.swift */,
+				C19250F22B118CBE00464090 /* Resources */,
+				C19250ED2B11896B00464090 /* MultiSelector */,
+				C19250EC2B11895100464090 /* Models */,
 			);
 			path = "Control Ingreso Estacionamiento";
 			sourceTree = "<group>";
@@ -137,6 +152,32 @@
 				C19058092AF991D80032E4E3 /* Control_Ingreso_EstacionamientoUITestsLaunchTests.swift */,
 			);
 			path = "Control Ingreso EstacionamientoUITests";
+			sourceTree = "<group>";
+		};
+		C19250EC2B11895100464090 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C19250EE2B118A2700464090 /* CarRegistration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C19250ED2B11896B00464090 /* MultiSelector */ = {
+			isa = PBXGroup;
+			children = (
+				C19250E82B11841E00464090 /* MultiSelector.swift */,
+				C19250EA2B1185B000464090 /* MultiSelectionView.swift */,
+			);
+			path = MultiSelector;
+			sourceTree = "<group>";
+		};
+		C19250F22B118CBE00464090 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C19250F32B118DDC00464090 /* jsonDecoder.swift */,
+				C19250F72B11A2DD00464090 /* door.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A3AE1A2B11A81100B9564F /* door.json in Resources */,
 				C19057F42AF991D70032E4E3 /* Preview Assets.xcassets in Resources */,
 				C19057F12AF991D70032E4E3 /* Assets.xcassets in Resources */,
 			);
@@ -252,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A3AE202B11AED400B9564F /* door.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A3AE212B11AED500B9564F /* door.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,12 +313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19250F42B118DDC00464090 /* jsonDecoder.swift in Sources */,
 				C10740CE2B100501008281C1 /* FormView.swift in Sources */,
 				C165C30C2B0E908500561F80 /* ParkingForm.swift in Sources */,
+				C19250E92B11841E00464090 /* MultiSelector.swift in Sources */,
+				C19250EF2B118A2700464090 /* CarRegistration.swift in Sources */,
 				C19250E72B11389A00464090 /* UpdateForm.swift in Sources */,
 				C1C67ADF2B01B188001B6ACA /* Home.swift in Sources */,
 				C19057ED2AF991D50032E4E3 /* Control_Ingreso_EstacionamientoApp.swift in Sources */,
 				C186690C2B01E6280006E368 /* InComing.swift in Sources */,
+				C19250EB2B1185B000464090 /* MultiSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

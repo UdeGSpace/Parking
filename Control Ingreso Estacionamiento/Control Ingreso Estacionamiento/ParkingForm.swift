@@ -6,91 +6,84 @@
 //
 
 import SwiftUI
-
-struct CarRegistration: Encodable {
-    let name: String
-    let brand: String
-    let color: String
-    let plate: String
-    let arrivingTimeStamp: String
-    let doorNum: Int
-    let module: String
-}
-
+ 
 struct ParkingForm: View {
+    @State private var selectedDoors: Set<Door> = []
     @State private var name = ""
     @State private var brand = ""
     @State private var color = ""
     @State private var plate = ""
     @State private var arrivingTime = Date()
-    @State private var doorNum = 1
     @State private var module = ""
     @State private var showAlert = false
     @State private var showEmptyFieldsAlert = false
 
     var body: some View {
-        VStack(alignment: .center, spacing: 1) {
-            Form {
-                Section(header: Text("Registro de Estacionamiento")) {
-                    Image(systemName: "parkingsign.circle")
-                        .font(.system(size: 90))
-                        .foregroundColor(.yellow)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(20)
-                    
-                    TextField("Nombre: ", text: $name)
-                        .textFieldStyle(DefaultTextFieldStyle())
-                    TextField("Placas: ", text: $plate)
-                        .textFieldStyle(DefaultTextFieldStyle())
-                    TextField("Marca: ", text: $brand)
-                        .textFieldStyle(DefaultTextFieldStyle())
-                    TextField("Color: ", text: $color)
-                        .textFieldStyle(DefaultTextFieldStyle())
-                    TextField("Modulo: ", text: $module)
-                        .textFieldStyle(DefaultTextFieldStyle())
-                    DatePicker(selection: $arrivingTime, label: { Text("Fecha") })
-                        .datePickerStyle(.compact)
-                    Picker("Puerta:", selection: $doorNum) {
-                        Text("P1: Olimpica").tag(1)
-                        Text("P2: Boulevard").tag(2)
-                        Text("P3: Revolución").tag(3)
-                    }
-                    Button(action: {
-                        if fieldsAreFilled() {
-                            registerCar()
-                            showAlert = true
-                        } else {
-                            showEmptyFieldsAlert = true
-                        }
-                    }) {
-                        Text("Registrar")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    .padding(.horizontal)
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("Registro completado"),
-                            message: Text("El registro se ha completado con éxito."),
-                            dismissButton: .default(Text("OK")) {
-                                // Restablecer los campos después de que el usuario presiona OK
-                                name = ""
-                                brand = ""
-                                color = ""
-                                plate = ""
-                                arrivingTime = Date()
-                                doorNum = 1
-                                module = ""
-                            }
+        NavigationStack{
+            VStack(alignment: .center, spacing: 1) {
+                Form {
+                    Section(header: Text("Registro de Estacionamiento")) {
+                        Image(systemName: "parkingsign.circle")
+                            .font(.system(size: 90))
+                            .foregroundColor(.yellow)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .padding(20)
+                        
+                        TextField("Nombre: ", text: $name)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                        TextField("Placas: ", text: $plate)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                        TextField("Marca: ", text: $brand)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                        TextField("Color: ", text: $color)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                        TextField("Modulo: ", text: $module)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                        DatePicker(selection: $arrivingTime, label: { Text("Fecha") })
+                            .datePickerStyle(.compact)
+                        MultiSelector(
+                            label: Text("Puerta:"),
+                            options: copyData(),
+                            optionToString:  { "\($0.name) \($0.description)" },
+                            selected: $selectedDoors
                         )
-                    }
-                }
 
+                        Button(action: {
+                            if fieldsAreFilled() {
+                                registerCar()
+                                showAlert = true
+                            } else {
+                                showEmptyFieldsAlert = true
+                            }
+                        }) {
+                            Text("Registrar")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
+                        .padding(.horizontal)
+                        .alert(isPresented: $showAlert) {
+                            Alert(
+                                title: Text("Registro completado"),
+                                message: Text("El registro se ha completado con éxito."),
+                                dismissButton: .default(Text("OK")) {
+                                    // Restablecer los campos después de que el usuario presiona OK
+                                    name = ""
+                                    brand = ""
+                                    color = ""
+                                    plate = ""
+                                    arrivingTime = Date()
+                                    module = ""
+                                }
+                            )
+                        }
+                    }
+                    
+                }
             }
         }
     }
@@ -106,7 +99,7 @@ struct ParkingForm: View {
             color: color,
             plate: plate,
             arrivingTimeStamp: "\(arrivingTime)",
-            doorNum: doorNum,
+            doorNum: parseDoorsToStringArray(selectedDoors: selectedDoors),
             module: module
         )
 
@@ -147,6 +140,7 @@ struct ParkingForm: View {
         // Iniciar la tarea
         task.resume()
     }
+    
 }
 
 

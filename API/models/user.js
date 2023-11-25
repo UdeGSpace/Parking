@@ -26,7 +26,7 @@ const dataSchema = new mongoose.Schema({
        },
     doorNum: {
         required: true,
-        type: Number
+        type: [String]
     },
     module: {
         required: true,

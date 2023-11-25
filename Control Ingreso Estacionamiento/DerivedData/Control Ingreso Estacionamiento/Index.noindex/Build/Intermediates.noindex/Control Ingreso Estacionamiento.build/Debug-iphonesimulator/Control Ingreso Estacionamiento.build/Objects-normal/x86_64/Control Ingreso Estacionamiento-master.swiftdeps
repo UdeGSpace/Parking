@@ -1,0 +1,27 @@
+version: "Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)"
+options: "f0c4a0a1fa8805cd420a503c2d813c38ec4befba33f9a84d5982149bf4c91893"
+build_start_time: [1700948259, 595923000]
+build_end_time: [1700948259, 621077000]
+inputs:
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/Control_Ingreso_EstacionamientoApp.swift"
+  : !dirty [1699838484, 181176407]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/FormView.swift"
+  : !dirty [1700777960, 509864294]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/Home.swift"
+  : !dirty [1700889125, 519896635]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/InComing.swift"
+  : !dirty [1700946414, 469238042]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/Models/CarRegistration.swift"
+  : !dirty [1700945897, 766643868]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/MultiSelector/MultiSelectionView.swift"
+  : !dirty [1700877216, 897836445]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/MultiSelector/MultiSelector.swift"
+  : !dirty [1700877705, 415403335]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/ParkingForm.swift"
+  : !dirty [1700946326, 720722256]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/Resources/jsonDecoder.swift"
+  : !dirty [1700946260, 336176814]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/UpdateForm.swift"
+  : !dirty [1700948241, 117474962]
+  ? "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/DerivedData/Control Ingreso Estacionamiento/Index.noindex/Build/Intermediates.noindex/Control Ingreso Estacionamiento.build/Debug-iphonesimulator/Control Ingreso Estacionamiento.build/DerivedSources/GeneratedAssetSymbols.swift"
+  : !dirty [1700886392, 586108768]
