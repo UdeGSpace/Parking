@@ -29,9 +29,16 @@ struct ParkingForm: View {
     @State private var showEmptyFieldsAlert = false
 
     var body: some View {
-        NavigationView {
+        VStack(alignment: .center, spacing: 1) {
             Form {
                 Section(header: Text("Registro de Estacionamiento")) {
+                    Image(systemName: "parkingsign.circle")
+                        .font(.system(size: 90))
+                        .foregroundColor(.yellow)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(20)
+                    
                     TextField("Nombre: ", text: $name)
                         .textFieldStyle(DefaultTextFieldStyle())
                     TextField("Placas: ", text: $plate)
@@ -58,7 +65,14 @@ struct ParkingForm: View {
                         }
                     }) {
                         Text("Registrar")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
                     }
+                    .padding(.horizontal)
                     .alert(isPresented: $showAlert) {
                         Alert(
                             title: Text("Registro completado"),
@@ -75,9 +89,8 @@ struct ParkingForm: View {
                             }
                         )
                     }
-
-
                 }
+
             }
         }
     }
