@@ -4,7 +4,7 @@ struct CarDetails: Decodable, Identifiable {
     let id = UUID() // Agrega una propiedad id
     let _id: String
     let name: String
-    let doorNum: Int
+    let doorNum: [String]
     let color: String
     let brand: String
     let plate: String

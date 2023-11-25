@@ -1,0 +1,56 @@
+{
+  "source": "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/ParkingForm.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Registro de Estacionamiento"
+      },
+      {
+        "comment": "",
+        "key": "Puerta:"
+      },
+      {
+        "comment": "",
+        "key": "Nombre: "
+      },
+      {
+        "comment": "",
+        "key": "Placas: "
+      },
+      {
+        "comment": "",
+        "key": "Marca: "
+      },
+      {
+        "comment": "",
+        "key": "Color: "
+      },
+      {
+        "comment": "",
+        "key": "Modulo: "
+      },
+      {
+        "comment": "",
+        "key": "Fecha"
+      },
+      {
+        "comment": "",
+        "key": "Registrar"
+      },
+      {
+        "comment": "",
+        "key": "Registro completado"
+      },
+      {
+        "comment": "",
+        "key": "El registro se ha completado con éxito."
+      },
+      {
+        "comment": "",
+        "key": "OK"
+      }
+    ]
+  },
+  "version": 1
+}

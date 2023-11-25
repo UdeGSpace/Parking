@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct UpdateCarDetails: Decodable, Identifiable {
-    let id = UUID() // Agrega una propiedad id
+    let id = UUID() // Agrega una propiedad id para la indentificación y decodificaciòn del objeto
     let _id: String
-    var name: String  // Cambié 'let' a 'var' para permitir la modificación
-    var doorNum: Int
+    var name: String
+    var doorNum: [String]
     var color: String
     var brand: String
     var plate: String
@@ -34,7 +34,7 @@ struct UpdateForm: View {
             module: carDetails.module
         ))
     }
-    
+    @State private var selectedDoors: Set<Door> = []
     @State private var showAlert = false
     @State private var showEmptyFieldsAlert = false
 
@@ -58,11 +58,13 @@ struct UpdateForm: View {
                     .textFieldStyle(DefaultTextFieldStyle())
                 TextField("Modulo: ", text: $updateCarDetails.module)
                     .textFieldStyle(DefaultTextFieldStyle())
-                Picker("Puerta:", selection: $updateCarDetails.doorNum) {
-                    Text("P1: Olimpica").tag(1)
-                    Text("P2: Boulevard").tag(2)
-                    Text("P3: Revolución").tag(3)
-                }
+                MultiSelector(
+                    label: Text("Puerta:"),
+                    options: copyData(),
+                    optionToString:  { "\($0.name) \($0.description)" },
+                    selected: $selectedDoors
+                )
+
                 Button(action: {
                     if fieldsAreFilled() {
                         showAlert = true
@@ -71,7 +73,7 @@ struct UpdateForm: View {
                         showEmptyFieldsAlert = true
                     }
                 }) {
-                    Text("Registrar")
+                    Text("Actualizar")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
@@ -91,18 +93,36 @@ struct UpdateForm: View {
                             updateCarDetails.color = ""
                             updateCarDetails.plate = ""
                             updateCarDetails.brand = ""
-                            updateCarDetails.doorNum = 0
+                            updateCarDetails.doorNum = []
                             updateCarDetails.module = ""
                         }
                     )
                 }
             }
+
+        }            
+        .onAppear {
+            self.selectedDoors = parseStringArrayToSelectedDoors(stringArray: updateCarDetails.doorNum)
         }
+
     }
 
     private func fieldsAreFilled() -> Bool {
         return !updateCarDetails.name.isEmpty && !updateCarDetails.plate.isEmpty && !updateCarDetails.brand.isEmpty && !updateCarDetails.color.isEmpty
     }
+    func parseStringArrayToSelectedDoors(stringArray: [String]) -> Set<Door> {
+        return Set(stringArray.map { doorString in
+            let components = doorString.components(separatedBy: " ")
+            if components.count >= 2 {
+                return Door(name: components[0], description: components[1])
+            } else {
+                // En caso de que el formato del string no sea el esperado,
+                // puedes devolver un objeto Door con valores predeterminados o manejarlo de otra manera según tus necesidades.
+                return Door(name: "DefaultName", description: "DefaultDescription")
+            }
+        })
+    }
+
     
     func update(){
         let carData = CarRegistration(
@@ -111,7 +131,7 @@ struct UpdateForm: View {
             color: updateCarDetails.color,
             plate: updateCarDetails.plate,
             arrivingTimeStamp: "2023-11-30T06:04:00.000Z",
-            doorNum: updateCarDetails.doorNum,
+            doorNum: parseDoorsToStringArray(selectedDoors: selectedDoors),
             module: updateCarDetails.module
         )
         
