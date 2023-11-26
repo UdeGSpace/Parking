@@ -21,9 +21,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.listen(3000,() => {
-    console.log(`Server Started at ${3000}`)
-})
+app.listen(3000)
+console.log(`Server Started at ${3000}`)
 
 const routes = require('./routes/routes');
 app.use('/parking', routes)
