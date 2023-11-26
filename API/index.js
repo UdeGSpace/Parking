@@ -40,6 +40,10 @@ app.listen(port,() => {
 const routes = require('./routes/routes.js');
 app.use('/parking', routes)
 
+app.get('/ping', (req, res) => {
+    res.sendStatus(200)
+  })
+
 module.exports = {
     database,
     collection
