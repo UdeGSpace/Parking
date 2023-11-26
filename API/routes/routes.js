@@ -29,13 +29,14 @@ router.post('/register', async (req, res) => {
 
 router.get("/entraceRegister", async (req, res) => {
     const doorNum = req.query.doorNum;
-    const timestamp = new Date(req.query.arrivingTime);
+    const after = new Date(req.query.after);
+    const before = new Date(req.query.before);
 
     try {
         let result = await userTable.find({
             doorNum: doorNum,
-            arrivingTimeStamp: { $gte: timestamp }
-        });
+            arrivingTimeStamp: { $gte: after ,$lt: before}
+        }).sort({ arrivingTimeStamp: 1 });
 
         if (!result || result.length === 0) {
             res.status(200).send("Empty");
