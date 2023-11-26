@@ -13,9 +13,20 @@ database.on('error', (error) => {
     console.log(error)
 })
 
-database.once('connected', () => {
+database.once('connected', async () => {
     console.log('Database Connected');
-})
+
+    try {
+        const pingResult = await mongoose.connection.db.admin().ping();
+        if (pingResult.ok === 1) {
+            console.log('Ping successful');
+        } else {
+            console.error('Database ping failed');
+        }
+    } catch (error) {
+        console.error('Error during database ping', error);
+    }
+});
 
 const app = express();
 app.use(express.json());
