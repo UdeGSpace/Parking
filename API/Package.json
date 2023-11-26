@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js"
-    },
+      },
     "author": "Sergio Sanchez",
     "license": "ISC",
     "dependencies": {
