@@ -4,6 +4,7 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.MONGO_DB_URL;
+const port = process.env.PORT;
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -20,7 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`Server Started at ${3000}`)
 })
 
