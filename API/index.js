@@ -3,6 +3,8 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.MONGO_DB_URL;
+const port = process.env.PORT || 3001;
+
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -20,11 +22,11 @@ app.use(express.json());
 app.use(cors());
 
 
-app.listen(() => {
-    console.log(`Server Started at ${3000}`)
+app.listen(port,() => {
+    console.log(`Server Started at ${port}`)
 })
 
-const routes = require('./routes/routes');
+const routes = require('./routes/routes.js');
 app.use('/parking', routes)
 
 module.exports = {
