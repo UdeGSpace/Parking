@@ -19,7 +19,6 @@ const database = async () => {
     }
 }
 
-const collection = database.collection("EntraceRegister");
 database.on('error', (error) => {
     console.log(error)
 })
@@ -40,8 +39,4 @@ app.use('/parking', routes)
 
 module.exports = {
     database,
-    collection
 };
-
-
-
