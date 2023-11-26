@@ -4,8 +4,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.MONGO_DB_URL;
 
-mongoose.connect(mongoString);
-const database = mongoose.connection;
+const database = async () => {
+    try {
+        mongoose.set('strictQuery', false);
+        await mongoose.connect(mongoString, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log('MongoDB Connected...');
+    } catch (err) {
+        console.error(err.message);
+        // make the process fail
+        process.exit(1);
+    }
+
 const collection = database.collection("EntraceRegister");
 database.on('error', (error) => {
     console.log(error)
