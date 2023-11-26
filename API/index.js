@@ -29,6 +29,7 @@ database.once('connected', async () => {
 });
 
 const app = express();
+app = app.create({baseUrl:'https://parking-api-1b5j.onrender.com'})
 app.use(express.json());
 app.use(cors());
 
