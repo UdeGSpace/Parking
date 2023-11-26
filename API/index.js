@@ -17,6 +17,7 @@ const database = async () => {
         // make the process fail
         process.exit(1);
     }
+}
 
 const collection = database.collection("EntraceRegister");
 database.on('error', (error) => {
