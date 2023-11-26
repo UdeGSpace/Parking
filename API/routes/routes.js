@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const model = require("../models/user");
 const { default: mongoose } = require('mongoose');
-const { Int32 } = require("mongodb");
 var mongo = require('mongodb');
 var ObjectId = require('mongodb').ObjectID;
 require("dotenv").config();
@@ -86,7 +85,7 @@ router.put("/entraceRegister/update", async (req, res) => {
                 doorNum: req.body.doorNum,
                 module: req.body.module.toLocaleLowerCase()
             },
-            { new: true } // Return the modified document
+            { new: true } 
         );
 
         if (!result) {
