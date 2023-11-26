@@ -4,7 +4,7 @@
     "description": "Test",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "nodemon server.js"
     },
     "author": "Sergio Sanchez",
     "license": "ISC",
