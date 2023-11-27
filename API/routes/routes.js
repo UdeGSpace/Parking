@@ -53,6 +53,7 @@ router.get("/plateRecord", async (req, res) => {
     timestamp.setHours(0);
     timestamp.setMinutes(0);
     timestamp.setSeconds(0);
+    timestamp.setMilliseconds(0);
     console.log(timestamp);
     try {
         let result = await userTable.find({
