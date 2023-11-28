@@ -48,15 +48,16 @@ router.get("/entraceRegister", async (req, res) => {
 });
 
 router.get("/plateRecord", async (req, res) => {
-    const plate = req.query.plate.toLocaleLowerCase();
+    const name = req.query.name.toLocaleLowerCase();
     const timestamp = new Date();
     timestamp.setHours(0);
     timestamp.setMinutes(0);
     timestamp.setSeconds(0);
+    timestamp.setMilliseconds(0);
     console.log(timestamp);
     try {
         let result = await userTable.find({
-            plate: plate,
+            name: name,
             arrivingTimeStamp: { $gte: timestamp }
         });
 
