@@ -8,15 +8,15 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     brand: {
-        required: true,
+        required: false,
         type: String
     },
     color: {
-        required: true,
+        required: false,
         type: String
     },
     plate: {
-        required: true,
+        required: false,
         type: String
     },
     arrivingTimeStamp: {
