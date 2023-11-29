@@ -17,32 +17,55 @@
         <h1 class="navbar-brand text-success">Control de Acceso Estacionamiento</h1>
         <img src="./cucei-logo.png" alt="Logo"> 
     </header>
-    <label class="select" for="doorSelect">Numero de Puerta:</label>
-    <select id="doorSelect">
-        <option value="P1 Olimpica">P1 Olimpica</option>
-        <option value="P2 Boulevard">P2 Boulevard</option>
-        <option value="P3 Revolución">P3 Revolucion</option>
-        <!-- Agrega más opciones según sea necesario -->
-    </select>
-
-    <button onclick="fetchEntranceRecords()">Actualizar puerta</button>
-    <div id="results">
-        <table id="recordsTable">
-            <tr>
-                <th colspan="5">Registros de Entrada</th>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <th>Marca</th>
-                <th>Color</th>
-                <th>Placa</th>
-                <th>Hora de llegada</th>
-            </tr>
-            <tr>
-                <th colspan="5"><span id="-1Hour"></span>:00</th>
-            </tr>
-        </table>
+    <div id="general">
+        <div id="div-1">
+            <label class="select" for="doorSelect">Numero de Puerta:</label>
+            <select id="doorSelect">
+                <option value="P1 Olimpica">P1 Olimpica</option>
+                <option value="P2 Boulevard">P2 Boulevard</option>
+                <option value="P3 Revolución">P3 Revolucion</option>
+                <!-- Agrega más opciones según sea necesario -->
+            </select>
+            <button onclick="fetchEntranceRecords()">Actualizar puerta</button>
+        </div>
+        <div id="results">
+            <table id="recordsTable">
+                <tr>
+                    <th colspan="6">Registros de Entrada</th>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Modulo</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Placa</th>
+                    <th>Hora de llegada</th>
+                </tr>
+                <tr>
+                    <th colspan="6">Actual</th>
+                </tr>
+            </table>
+        </div>
+        <div id="oldResults">
+            <table id="secondTable">
+                <tr>
+                    <th colspan="6">Registros Pasados</th>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Modulo</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Placa</th>
+                    <th>Hora de llegada</th>
+                </tr>
+                <tr>
+                    <th colspan="6">Pasados</th>
+                </tr>
+            </table>
+        </div>
     </div>
+
 
     <script>
         (function() {
@@ -107,8 +130,6 @@ let actualizarHora = function() {
 actualizarHora();
 let intervalo = setInterval(actualizarHora, 1000);
 
-
-}());
         async function fetchEntranceRecords() {
             const doorNum = document.getElementById("doorSelect").value;
             let now = new Date();
@@ -125,8 +146,7 @@ let intervalo = setInterval(actualizarHora, 1000);
             // Hora siguiente
             after.setMinutes(0);
             after.setSeconds(0);
-            after.setHours(after.getHours() - 1);
-            document.getElementById("-1Hour").innerHTML = after.getHours();
+            after.setHours(after.getMinutes() - 15);
 
             // Formatear las fechas
             const formattedBeforeTime = before.toISOString();
@@ -142,7 +162,7 @@ let intervalo = setInterval(actualizarHora, 1000);
                 if (responseBody.trim().toLowerCase() === "empty") {
                     // Limpiar la tabla y mostrar un mensaje si la respuesta es "empty"
                     const newRow = recordsTable.insertRow(-1);
-                    newRow.innerHTML = `<td colspan='5'>No hay registros disponibles.</td>`;
+                    newRow.innerHTML = `<td colspan='6'>No hay registros disponibles.</td>`;
                     return;
                 }
 
@@ -159,32 +179,17 @@ let intervalo = setInterval(actualizarHora, 1000);
                 let hourSecction2 = false;
 
                 data.forEach(record => {
-                    if(new Date(record.arrivingTimeStamp).getHours() === now.getHours() && !hourSecction1){
-                        console.log(now.getHours())
-                        hourSecction = true
-                        const newRow = recordsTable.insertRow(-1);
-                        newRow.innerHTML = `
-                            <tr>
-                                <th colspan="5">${now.getHours()}:00</th>
-                            </tr>
-                            `;
-                    }else if(new Date(record.arrivingTimeStamp).getHours() > now.getHours() && !hourSecction2){
-                        hourSecction2 = true
-                        const newRow = recordsTable.insertRow(-1);
-                        newRow.innerHTML = `
-                            <tr>
-                                <th colspan="5">${before.getHours()-1}:00</th>
-                            </tr>
-                            `;
-                    }
                     const formattedArrivingTime = dateTimeFormat.format(new Date(record.arrivingTimeStamp));
                     const newRow = recordsTable.insertRow(-1);
                     newRow.innerHTML = `
+                    <tr>
                         <td>${record.name}</td>
+                        <td>${record.module}</td>
                         <td>${record.brand}</td>
                         <td>${record.color}</td>
                         <td>${record.plate}</td>
                         <td>${formattedArrivingTime}</td>
+                    </tr>
                     `;
                 });
                 } catch (error) {
@@ -202,8 +207,9 @@ let intervalo = setInterval(actualizarHora, 1000);
         }
         
 // Llamar a la función para llenar el elemento doorSelect al cargar la página
-fetchDoors();
-window.onload = scheduleFetch;
+}());
+let intervalo = setInterval(fetchEntranceRecords, 60000);
+
 </script>
 
 </body>

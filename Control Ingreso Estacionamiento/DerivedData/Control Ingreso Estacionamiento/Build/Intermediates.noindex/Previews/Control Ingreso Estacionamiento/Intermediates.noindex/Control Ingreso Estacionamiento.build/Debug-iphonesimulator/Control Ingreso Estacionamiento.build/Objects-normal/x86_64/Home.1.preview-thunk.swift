@@ -25,25 +25,25 @@ extension Home {
             TabView{
                 InComing()
                     .tabItem {
-                        Image(systemName: __designTimeString("#8411.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[0].value", fallback: "magnifyingglass"))
-                        Text(__designTimeString("#8411.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[1].arg[0].value", fallback: "Buscar")).tag(__designTimeInteger("#8411.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[1].modifier[0].arg[0].value", fallback: 0))
+                        Image(systemName: __designTimeString("#6562.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[0].value", fallback: "magnifyingglass"))
+                        Text(__designTimeString("#6562.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[1].arg[0].value", fallback: "Buscar")).tag(__designTimeInteger("#6562.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[1].modifier[0].arg[0].value", fallback: 0))
                     }
                 
                 ParkingForm() // Esta es tu vista de ParkingForm
                     .tabItem {
-                        Image(systemName: __designTimeString("#8411.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value.[0].arg[0].value", fallback: "car"))
-                        Text(__designTimeString("#8411.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value.[1].arg[0].value", fallback: "Registrar")).tag(__designTimeInteger("#8411.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
+                        Image(systemName: __designTimeString("#6562.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value.[0].arg[0].value", fallback: "car"))
+                        Text(__designTimeString("#6562.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value.[1].arg[0].value", fallback: "Registrar")).tag(__designTimeInteger("#6562.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
                     }
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Text(__designTimeString("#8411.[1].[1].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value.[0].arg[0].value", fallback: "CUCEI"))
+                        Text(__designTimeString("#6562.[1].[1].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value.[0].arg[0].value", fallback: "CUCEI"))
                             .foregroundColor(.blue)
                             .font(.largeTitle)
                             .bold()
-                        Image(systemName: __designTimeString("#8411.[1].[1].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value.[1].arg[0].value", fallback: "car.side"))
-                            .font(.system(size: __designTimeInteger("#8411.[1].[1].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value.[1].modifier[0].arg[0].value.arg[0].value", fallback: 30)))
+                        Image(systemName: __designTimeString("#6562.[1].[1].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value.[1].arg[0].value", fallback: "car.side"))
+                            .font(.system(size: __designTimeInteger("#6562.[1].[1].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value.[1].modifier[0].arg[0].value.arg[0].value", fallback: 30)))
                             .foregroundColor(.blue)
                         
                     }.frame(maxWidth: .infinity)

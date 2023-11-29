@@ -1,0 +1,44 @@
+{
+  "source": "/Users/sergiosanchezroldan/Desktop/CUCEI/8vo Semestre/Proyecto/Control Ingreso Estacionamiento/Control Ingreso Estacionamiento/UpdateForm.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Actualizar Registro de Estacionamiento"
+      },
+      {
+        "comment": "",
+        "key": "Puerta:"
+      },
+      {
+        "comment": "",
+        "key": "Fecha:"
+      },
+      {
+        "comment": "",
+        "key": "Actualizar"
+      },
+      {
+        "comment": "",
+        "key": "Registro completado"
+      },
+      {
+        "comment": "",
+        "key": "El registro se ha completado con éxito."
+      },
+      {
+        "comment": "",
+        "key": "OK"
+      },
+      {
+        "comment": "",
+        "key": "%@:"
+      },
+      {
+        "comment": "",
+        "key": ""
+      }
+    ]
+  },
+  "version": 1
+}

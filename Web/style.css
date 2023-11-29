@@ -4,23 +4,42 @@
     --option-bg: #212934;
     --select-bg: rgba(255, 255, 255, 0.2);
   }
-  * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+
+  *{
+    margin:0px;
+    padding:0px;
+  }
+  div#general{
+    margin:auto;
+    width: 90%;
+    height: 800px;
+  }
+  #div-1{
+    margin-bottom: 20px;
+  }
+  #results{
+    max-width: 1010px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+  #oldResults{
+    float: right;
+  }
+
+
   .h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 48px !important;
     font-weight: 200 !important;
   }
-  body , label, div{
+  body , label{
     font-family: 'Roboto', sans-serif;
     font-size: 18px !important;
     font-weight: 300 !important;
     place-items: center;
     background: #ffffff;
   }
+
   header {
     padding: 5px;
     text-align: left;
@@ -39,14 +58,8 @@ button {
     cursor: pointer;
 }
 
-#results {
-    margin-top: 20px;
-}
-
-table {
-    border-collapse: collapse;
-    width: 70%; 
-    margin: 0 auto 5rem;
+#recordsTable{
+  width: 1000px;
 }
 
 th, td {
@@ -109,14 +122,10 @@ select {
   #templatemo_main_nav a:hover { color: #69bb7e;}
   #templatemo_main_nav .navbar .nav-icon { margin-right: 20px;}
   
-  .wrap {
-	max-width: 100%;
-    width:200px/* Agrega esta línea para colocar en la esquina derecha */
-}
 
 .widget {
-	margin: 2em;
-	width: 100%;
+  float: right;
+	width: 375px;
 }
 
 .widget p {
