@@ -1,0 +1,162 @@
+:root {
+    --arrow-bg: #212934;
+    --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+    --option-bg: #212934;
+    --select-bg: rgba(255, 255, 255, 0.2);
+  }
+
+  *{
+    margin:0px;
+    padding:0px;
+  }
+  div#general{
+    margin:auto;
+    width: 90%;
+    height: 800px;
+  }
+  #div-1{
+    margin-bottom: 20px;
+  }
+  #results{
+    max-width: 1010px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+  #oldResults{
+    float: right;
+  }
+
+
+  .h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px !important;
+    font-weight: 200 !important;
+  }
+  body , label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    place-items: center;
+    background: #ffffff;
+  }
+
+  header {
+    padding: 5px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    max-width: 200px; /* Ajusta el tamaño del logo según sea necesario */
+    align-items: center; /* Ajusta el espacio entre el logo y el título */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#recordsTable{
+  width: 1000px;
+}
+
+th, td {
+    text-align: center; /* Centrar el texto en las celdas */
+    font-size: 1.3rem;
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+  /* <select> styles */
+select {
+    /* Reset */
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    /* Personalize */
+    width: 20rem;
+    padding: 1rem 4rem 1rem 1rem;
+    background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+      linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+    color: #212934;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    /* Remove IE arrow */
+    &::-ms-expand {
+      display: none;
+    }
+    /* Remove focus outline */
+    &:focus {
+      outline: none;
+    }
+    /* <option> colors */
+    option {
+      color: inherit;
+      background-color: var(--option-bg);
+    }
+  }
+/* General */
+.logo { font-weight: 500 !important;}
+.text-warning {  color: #ede861 !important;}
+.text-muted { color: #bcbcbc !important;}
+.text-success { color: #212934 !important;}
+.text-light { color: #cfd6e1 !important;}
+.bg-dark { background-color: #212934 !important;}
+.bg-light { background-color: #e9eef5 !important;}
+.bg-black { background-color: #1d242d !important;}
+.bg-success { background-color: #59ab6e !important;}
+.btn-success {
+  background-color: #59ab6e !important;
+  border-color: #56ae6c !important;
+}
+  #templatemo_nav_top { min-height: 40px;}
+  #templatemo_nav_top * { font-size: .9em !important;}
+  #templatemo_main_nav a { color: #212934;}
+  #templatemo_main_nav a:hover { color: #69bb7e;}
+  #templatemo_main_nav .navbar .nav-icon { margin-right: 20px;}
+  
+
+.widget {
+  float: right;
+	width: 375px;
+}
+
+.widget p {
+	display: inline-block;
+	line-height: 1em;
+}
+
+.fecha {
+	background-color: rgba(0, 0, 0, 0.5);
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.5em;
+	margin-bottom: 5px;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.reloj {
+	background-color: rgba(0, 0, 0, 0.5);
+	font-family: 'Oswald', sans-serif;
+	font-size: 40px;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.reloj .caja-segundos {
+	display: inline-block;
+}
+
+.reloj .segundos, .reloj .ampm {
+	display: block;
+	font-size: 2rem;
+}

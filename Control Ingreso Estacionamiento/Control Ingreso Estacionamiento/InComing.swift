@@ -19,7 +19,7 @@ struct InComing: View {
     @State private var isPresentingConfirm: Bool = false
     @State private var selectedItemId: String?
     @State private var confirmationShown = false
-    @State private var licensePlate = ""
+    @State private var name = ""
     @State private var carDetails: [CarDetails] = []
     @State private var leftNumber = 0
     @State private var rightNumber = 0
@@ -40,7 +40,7 @@ struct InComing: View {
                         .overlay {
                             HStack(alignment: .center, content: {
                                 Image(systemName: "magnifyingglass").padding()
-                                TextField("Ingrese la placa", text: $licensePlate)
+                                TextField("Ingrese el Nombre", text: $name)
                                     .tag("search")
                                     .padding()
                                     .textFieldStyle(DefaultTextFieldStyle())
@@ -122,7 +122,7 @@ struct InComing: View {
     }
 
     func fetchData() {
-        guard let url = URL(string: "http://127.0.0.1:3000/parking/plateRecord?plate=\(licensePlate)") else {
+        guard let url = URL(string: "https://parking-api-1b5j.onrender.com/parking/plateRecord?plate=\(name)") else {
             return
         }
         print(url);
@@ -166,7 +166,7 @@ struct InComing: View {
             return
         }
 
-        let deleteURLString = "http://127.0.0.1:3000/parking/entraceRegister/delete?id=\(id)"
+        let deleteURLString = "https://parking-api-1b5j.onrender.com/parking/entraceRegister/delete?id=\(id)"
         guard let deleteURL = URL(string: deleteURLString) else {
             print("URL no válida")
             return

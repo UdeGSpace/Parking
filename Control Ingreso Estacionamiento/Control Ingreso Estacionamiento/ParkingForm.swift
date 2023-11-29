@@ -104,7 +104,7 @@ struct ParkingForm: View {
         )
 
         // Crear la URL a la que enviar la solicitud
-        guard let url = URL(string: "http://127.0.0.1:3000/parking/register") else {
+        guard let url = URL(string: "https://parking-api-1b5j.onrender.com/parking/register") else {
             return
         }
 

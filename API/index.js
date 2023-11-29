@@ -46,5 +46,4 @@ app.get('/ping', (req, res) => {
 
 module.exports = {
     database,
-    collection
 };
